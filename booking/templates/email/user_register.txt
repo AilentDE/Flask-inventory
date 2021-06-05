@@ -1,0 +1,12 @@
+Welcom to J-LIST Taiwan Distribution Center System
+
+Please use the following  link to register your user :
+
+{{ url_register }}
+
+If you don't use this link within 30 minutes, it will expire.
+
+
+Thanks,
+
+Your friends at Moaideas

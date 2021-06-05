@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>訂單進度顯示區</h1>
+    <form action="" method="post">
+        {{ form.csrf_token }}
+        <table>
+            <tr>
+                <th>Oirder Date</th>
+                <th>Order #</th>
+                <th>State</th>
+                <th>Shipping Method</th>
+                <th>Country</th>
+                <th>Remark</th>
+
+                <th>Tracking #</th>
+                <th>Shipping Date</th>
+                <th>Delivery Fee</th>
+                <th>Materials Fee</th>
+                <th>Package Weight</th>
+            </tr>
+            {% for order in orders %}
+            <tr>
+                <td>{{ order.Order_info.order_date }}</td>
+                <td>
+                    {{ order.Order_info.order_number }}
+                    {{ form.order_number(type='hidden', value=order.Order_info.order_number) }}
+                </td>
+                <td>{{ order.Order_info.state }}</td>
+                <td>{{ order.Order_info.shipping_method }}</td>
+                <td>{{ order.Order_info.country }}</td>
+                <td>{{ order.Order_info.remark }}</td>
+
+            {% if current_user.id != 2  or order.Report.tracking_number != None %}
+                <td>
+                    {{ order.Report.tracking_number }}
+                    {{ form.tracking_number(type='hidden', value='') }}
+                </td>
+            {% else %}
+                <td>{{ form.tracking_number() }}</td>
+            {% endif %}
+            {% if current_user.id != 2  or order.Report.shipping_date != None %}
+                <td>
+                    {{ order.Report.shipping_date }}
+                    {{ form.shipping_date(type='hidden', value='') }}
+                </td>
+            {% else %}
+                <td>{{ form.shipping_date(type='datetime-local') }}</td>
+            {% endif %}
+            {% if current_user.id != 2  or order.Report.delivery_fee != None %}
+                <td>
+                    {{ order.Report.delivery_fee }}
+                    {{ form.delivery_fee(type='hidden', value='') }}
+                </td>
+            {% else %}
+                <td>{{ form.delivery_fee() }}</td>
+            {% endif %}
+            {% if current_user.id != 2  or order.Report.materials_fee != None %}
+                <td>
+                    {{ order.Report.materials_fee }}
+                    {{ form.materials_fee(type='hidden', value='') }}
+                </td>
+            {% else %}
+                <td>{{ form.materials_fee() }}</td>
+            {% endif %}
+            {% if current_user.id != 2  or order.Report.package_weight != None %}
+                <td>
+                    {{ order.Report.package_weight }}
+                    {{ form.package_weight(type='hidden', value='') }}
+                </td>
+            {% else %}
+                <td>{{ form.package_weight() }}</td>
+            {% endif %}
+            
+            </tr>
+            {% endfor %}
+        </table>
+        {% if current_user.id ==2 %}
+            {{ form.submit() }}
+        {% endif %}
+    </form>
+
+{% endblock %}

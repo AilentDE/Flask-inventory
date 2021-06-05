@@ -1,0 +1,12 @@
+We heard that you lost your Twittor password. Sorry about that !
+
+But don't worry ! You can use the following  link to reset ypur password :
+
+{{ url_password_reset }}
+
+If you don't use this link within 10 minutes, it will expire. To get a new password reset link, visit {{ url_password_reset_request }}
+
+
+Thanks,
+
+Your friends at Moaideas

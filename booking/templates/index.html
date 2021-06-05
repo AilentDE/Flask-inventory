@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>index</h1>
+    <table>
+        <tr>
+            <th></th>
+            <th>SKU</th>
+            <th>title</th>
+            <th>quantity</th>
+        </tr>
+        {% for product in products %}
+        <tr>
+            <td><img src="" alt=""></td>
+            <td>{{ product.sku }}</td>
+            <td>{{ product.title }}</td>
+            <td>{{ product.quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
